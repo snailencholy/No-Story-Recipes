@@ -37,7 +37,7 @@ const RecipeBlock = (props) => {
   };
 
   return (
-    <Card title={name} style={CardTitleStyle}>
+    <Card title={name.replaceAll("\"", "")} style={CardTitleStyle}>
       <Card.Grid hoverable={false} style={CardStyle}>
         <div style={GridTitleStyle}>Ingredients</div>
         {
