@@ -4,19 +4,19 @@
     "label": "Soups",
     "children": [
       {
-        "key": "soup1",
+        "key": "French Onion",
         "label": "French Onion"
       },
       {
-        "key": "soup2",
+        "key": "Chicken Soup",
         "label": "Chicken Soup"
       },
       {
-        "key": "soup3",
+        "key": "Potato Soup",
         "label": "Potato Soup"
       },
       {
-        "key": "soup4",
+        "key": "Minestrone",
         "label": "Minestrone"
       }
     ]
@@ -26,7 +26,7 @@
     "label": "Chicken",
     "children": [
       {
-        "key": "chk1",
+        "key": "Gochujang Fried Chicken",
         "label": "Gochujang Fried Chicken"
       }
     ]
@@ -36,7 +36,7 @@
     "label": "Beef",
     "children": [
       {
-        "key": "beef1",
+        "key": "Cast Iron New York Strip",
         "label": "Cast Iron New York Strip"
       }
     ]
@@ -46,7 +46,7 @@
     "label": "Pork",
     "children": [
       {
-        "key": "pig1",
+        "key": "Crockpot pulled pork",
         "label": "Crockpot pulled pork"
       }
     ]
@@ -56,7 +56,7 @@
     "label": "Fish",
     "children": [
       {
-        "key": "fish1",
+        "key": "Fried Tilapia Filet",
         "label": "Fried Tilapia Filet"
       }
     ]
@@ -66,7 +66,7 @@
     "label": "Vegetarian",
     "children": [
       {
-        "key": "veg1",
+        "key": "Potato and Mushroom Vindaloo",
         "label": "Potato and Mushroom Vindaloo"
       }
     ]
@@ -76,7 +76,7 @@
     "label": "Desserts",
     "children": [
       {
-        "key": "dsrt1",
+        "key": "Butterscotch Pudding",
         "label": "Butterscotch Pudding"
       }
     ]

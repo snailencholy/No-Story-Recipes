@@ -1,18 +1,52 @@
-import { useState } from 'react';
-import { AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-import { Flex, Layout, Menu } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+import { useState, useEffect } from 'react';
+import { Layout, Menu } from 'antd';
+import axios from 'axios';
+const { Header, Sider, Content } = Layout;
 
 
 import RecipeBlock from './components/RecipeBlock';
 
-import listyList from './data/list.json';
+const listUrl = "http://localhost:8080";
+const recipeUrl = "http://localhost:8080/recipe"
+//axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 
 const App = () => {
+  const [recipeName, setRecipeName] = useState("");
+  const [menuList, setMenuList] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [directions, setDirections] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(listUrl)
+      .then(data => {
+        setMenuList(data.data);
+      })
+      .catch(error => console.log(error));
+  }, [])
 
   const onClick = (e) => {
-    console.log('click ', e);
+    console.log(e);
+    axios
+      .get(`${recipeUrl}/${e.key}`)
+      .then(data => {
+        //console.log(data.data.Title, data.data.Ingredients, data.data.Directions);
+        if (data.data.Title === null || data.data.Title === "null") {
+          setRecipeName("No information found");
+          setDirections(["No information found"]);
+          setIngredients(["No information found"]);
+        } else {
+          let replacedI = data.data.Ingredients.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
+          let ingredients = replacedI.split(",");
+          let replacedD = data.data.Directions.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
+          let directions = replacedD.split(",");
+          setRecipeName(data.data.Title);
+          setIngredients(ingredients);
+          setDirections(directions);
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   return (
@@ -27,14 +61,14 @@ const App = () => {
 
         < Menu
           onClick={onClick}
-          defaultSelectedKeys={['1']}
           style={{
-            paddingTop: '5.5vh',
-            fontFamily: "Barlow Condensed",
+            paddingTop: '5.75vh',
+            fontFamily: "Dosis",
+            fontSize: "24px",
           }}
           mode="inline"
           theme="dark"
-          items={listyList}
+          items={menuList}
         />
       </Sider>
       <Layout>
@@ -43,12 +77,12 @@ const App = () => {
             padding: 0,
             textAlign: 'center',
             color: "#fff",
-            fontFamily: "Barlow Condensed",
-            fontWeight: "bold",
-            fontSize: "16px"
+            fontFamily: "Dosis",
+            fontWeight: "800",
+            fontSize: "40px"
           }}
         >
-          Recipes don't need a fuckin' novel
+          Recipes don't need a novel
         </Header>
         <Content
           style={{
@@ -63,7 +97,7 @@ const App = () => {
               minHeight: "100vh",
             }}
           >
-            <RecipeBlock />
+            <RecipeBlock name={recipeName} ingredients={ingredients} directions={directions} />
           </div>
         </Content>
       </Layout>
