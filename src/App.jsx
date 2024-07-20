@@ -8,7 +8,6 @@ import RecipeBlock from './components/RecipeBlock';
 
 const listUrl = "http://localhost:8080";
 const recipeUrl = "http://localhost:8080/recipe"
-//axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 
 const App = () => {
@@ -23,20 +22,19 @@ const App = () => {
       .then(data => {
         setMenuList(data.data);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.warn(error));
   }, [])
 
   const onClick = (e) => {
-    console.log(e);
     axios
       .get(`${recipeUrl}/${e.key}`)
       .then(data => {
-        //console.log(data.data.Title, data.data.Ingredients, data.data.Directions);
         if (data.data.Title === null || data.data.Title === "null") {
           setRecipeName("No information found");
           setDirections(["No information found"]);
           setIngredients(["No information found"]);
         } else {
+          // TODO: create function for the formatting.
           let replacedI = data.data.Ingredients.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
           let ingredients = replacedI.split(",");
           let replacedD = data.data.Directions.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
@@ -46,7 +44,7 @@ const App = () => {
           setDirections(directions);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => console.warn(error));
   };
 
   return (
