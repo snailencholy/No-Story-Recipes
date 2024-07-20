@@ -22,7 +22,7 @@ let GridTitleStyle = {
 }
 
 const RecipeBlock = (props) => {
-  console.log(props)
+  //TODO: Clean up and simplify
   let name;
   let ingredients;
   let directions;
