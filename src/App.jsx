@@ -6,7 +6,7 @@ const { Header, Sider, Content } = Layout;
 
 import RecipeBlock from './components/RecipeBlock';
 
-const listUrl = "http://localhost:8080";
+const listUrl = "http://localhost:8080/list";
 const recipeUrl = "http://localhost:8080/recipe"
 
 
