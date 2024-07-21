@@ -34,11 +34,8 @@ const App = () => {
           setDirections(["No information found"]);
           setIngredients(["No information found"]);
         } else {
-          // TODO: create function for the formatting.
-          let replacedI = data.data.Ingredients.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
-          let ingredients = replacedI.split(",");
-          let replacedD = data.data.Directions.replaceAll("\\", "").replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "");
-          let directions = replacedD.split(",");
+          let ingredients = formatRecipeData(data.data.Ingredients)
+          let directions = formatRecipeData(data.data.Directions)
           setRecipeName(data.data.Title);
           setIngredients(ingredients);
           setDirections(directions);
@@ -46,6 +43,15 @@ const App = () => {
       })
       .catch(error => console.warn(error));
   };
+
+  const formatRecipeData = (initialData) => {
+    let replaced = initialData
+      .replaceAll("\\", "")
+      .replaceAll("[", "")
+      .replaceAll("]", "")
+      .replaceAll("\"", "");
+    return replaced.split(",");
+  }
 
   return (
     <Layout
@@ -95,7 +101,11 @@ const App = () => {
               minHeight: "100vh",
             }}
           >
-            <RecipeBlock name={recipeName} ingredients={ingredients} directions={directions} />
+            <RecipeBlock
+              name={recipeName}
+              ingredients={ingredients}
+              directions={directions}
+            />
           </div>
         </Content>
       </Layout>
