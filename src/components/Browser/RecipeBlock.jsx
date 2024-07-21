@@ -1,4 +1,5 @@
 import { Card } from 'antd';
+import MobileRecipeBlock from '../Mobile/MobileRecipeBlock';
 
 
 let CardStyle = {
@@ -24,12 +25,11 @@ let GridTitleStyle = {
 const RecipeBlock = (props) => {
   let { name, ingredients, directions } = props
 
-  if (name == "") {
+  if (name === "" || name === undefined) {
     name = "None Selected";
     ingredients = ["None Selected"];
     directions = ["None Selected"];
   };
-
 
   return (
     <Card title={name.replaceAll("\"", "")} style={CardTitleStyle}>
