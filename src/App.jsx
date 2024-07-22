@@ -8,9 +8,8 @@ import MobileSplashPage from './components/Mobile/MobileSplashPage';
 
 const App = () => {
 
-  // Create the mobile view for now. Users and Auth
-  // is for another day.
-  const [loggedIn, isLoggedIn] = useState(true);
+  // TODO: build login system
+  const [loggedIn, isLoggedIn] = useState(false);
 
   if (loggedIn) {
     return (
