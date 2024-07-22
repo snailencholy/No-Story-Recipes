@@ -1,4 +1,5 @@
 import { Card } from 'antd';
+import MobileRecipeBlock from '../Mobile/MobileRecipeBlock';
 
 
 let CardStyle = {
@@ -22,18 +23,12 @@ let GridTitleStyle = {
 }
 
 const RecipeBlock = (props) => {
-  //TODO: Clean up and simplify
-  let name;
-  let ingredients;
-  let directions;
-  if (props.name == "") {
+  let { name, ingredients, directions } = props
+
+  if (name === "" || name === undefined) {
     name = "None Selected";
     ingredients = ["None Selected"];
     directions = ["None Selected"];
-  } else {
-    name = props.name;
-    ingredients = props.ingredients;
-    directions = props.directions;
   };
 
   return (
