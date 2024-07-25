@@ -9,7 +9,7 @@ import MobileSplashPage from './components/Mobile/MobileSplashPage';
 const App = () => {
 
   // TODO: build login system
-  const [loggedIn, isLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   if (loggedIn) {
     return (
@@ -24,7 +24,7 @@ const App = () => {
   }
 
   return (
-    <SplashPage />
+    <SplashPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
   )
 };
 
